@@ -1,0 +1,21 @@
+Maquette de l'application "ForkThisSite" 
+
+Etudiants
+Gael Cuminal
+Quentin Castillo
+
+Explication de l'expérience utilisateur:
+IMAGE 1.png
+Lorsque l'utilisateur ouvre l'application, une page d'acceuil s'affiche.
+De là, il peut accéder à plusieurs outils:
+En bas à droite, il peut, changer la langue.
+Cette fonctionnalité n'est disponible que sur cette page.
+L'utilisateur peut également accéder au module de téléchargement (2.png)
+ou visualiser les pages téléchargées (5.png).
+
+IMAGE 2.png
+Cette page permet de télécharger une page Web.
+On peut voir trois parties distinctes: 
+ - En haut, la sélection du répertoire de sauvegarde des pages.
+ - Au milieu, le choix de télécharger ou non les images et vidéos
+ - En bas, la sélection de la page Web
