@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="0.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
+    <Text layoutX="400.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documentation" textAlignment="CENTER" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
+    <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des pages téléchargées" textAlignment="CENTER" AnchorPane.leftAnchor="346.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
+    <Text layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télécharger une page web" textAlignment="CENTER" AnchorPane.leftAnchor="363.0" />
+    <Text layoutX="126.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ForkThisSite, développé par Quentin Castillo et Gael Cuminal, pour l'UCE Prototypage et interfaces." textAlignment="CENTER" />
+  </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

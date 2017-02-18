@@ -3,12 +3,15 @@
  */
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.*;
 
 import java.io.IOException;
 
@@ -52,7 +55,7 @@ public class ForkThisSite extends Application {
     private void showHome() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ForkThisSite.class.getResource("view/home.fxml"));
+            loader.setLocation(ForkThisSite.class.getResource("view/download.fxml"));
             AnchorPane home = loader.load();
             
             // Set person overview into the center of root layout.
@@ -60,5 +63,11 @@ public class ForkThisSite extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+        // Button was clicked, do something...
+        
     }
 }
