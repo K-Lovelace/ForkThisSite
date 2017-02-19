@@ -1,4 +1,4 @@
-package model.parser;
+package model;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -45,7 +45,7 @@ public class Parser {
         try {
             document = Jsoup.connect(url).get();
         } catch (IOException e) {
-            System.out.println("Parsing URL " + url + " failed: " + e.getMessage());
+            System.out.println("Parsing WebPage " + url + " failed: " + e.getMessage());
             return;
         }
     
@@ -89,7 +89,7 @@ public class Parser {
             String[] imageNameSplit = img.attr("src").split("/");
             String name = imageNameSplit[imageNameSplit.length];
             
-            //Open a URL Stream
+            //Open a WebPage Stream
             Connection.Response resultImageResponse = null;
             try {
                 resultImageResponse = Jsoup.connect(imageLocation).ignoreContentType(true).execute();
