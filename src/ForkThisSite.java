@@ -26,7 +26,7 @@ public class ForkThisSite extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("ForkThisSite");
     
         initLayout();
     
