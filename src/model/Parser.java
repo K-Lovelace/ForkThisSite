@@ -108,7 +108,7 @@ public class Parser {
     public static void main(String[] args) {
         Parser parser = new Parser("http://ceri.francoiscapon.com",
                 5,
-                "/home/lovelacez/ForkThisSite.out/test1/",
+                "/test1/",
                 false,
                 false);
         parser.parse();

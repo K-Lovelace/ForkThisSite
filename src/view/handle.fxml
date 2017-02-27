@@ -27,17 +27,17 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" stroke="BLACK" strokeType="INSIDE" width="296.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button layoutY="357.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="295.0" text="Supprimer">
+                  <Button fx:id="deleteButton" layoutY="357.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="295.0" text="Supprimer">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button layoutX="1.0" layoutY="302.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="295.0" text="Ouvrir l'URL">
+                  <Button fx:id="openButton" layoutX="1.0" layoutY="302.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="295.0" text="Ouvrir l'URL">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button layoutY="223.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="295.0" text="Visualiser">
+                  <Button fx:id="seeButton" layoutY="223.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="295.0" text="Visualiser">
                      <font>
                         <Font size="32.0" />
                      </font>

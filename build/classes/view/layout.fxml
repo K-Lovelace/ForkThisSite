@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <AnchorPane>
-            <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" stroke="BLACK" strokeType="INSIDE" width="900" BorderPane.alignment="TOP_LEFT" />
-                <Text id="PageTitle" layoutX="436.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ForkThisSite" />
-                <Button id="BackButton" fx:id="returnButton" layoutY="1.0" mnemonicParsing="false" onAction="#test" prefHeight="74.0" prefWidth="150.0" text="Retour" />
-            </children>
-        </AnchorPane>
-    </top>
+<BorderPane prefHeight="750.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" stroke="BLACK" strokeType="INSIDE" width="900" />
+            <Button id="BackButton" fx:id="returnButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="150.0" text="Retour" />
+            <Text id="PageTitle" layoutX="450.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ForkThisSite" />
+         </children>
+      </AnchorPane>
+   </top>
 </BorderPane>
