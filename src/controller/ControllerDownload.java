@@ -104,10 +104,13 @@ public class ControllerDownload
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // Méthode GAEL avec les variables en parametres
+                // Initalize parser
                 Parser parser = new Parser(urlText.getText(), recursivity, directory.toString(), images, videos);
+                //add webpage in database
                 Database.add(new WebPage(urlText.getText(), directory.toString(), new Date()));
+                //start parsing
                 (new Thread(parser::parse)).start();
+                //user feedback
             }
         });
         

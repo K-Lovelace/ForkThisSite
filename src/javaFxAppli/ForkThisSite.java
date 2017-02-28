@@ -2,6 +2,8 @@ package javaFxAppli;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -13,6 +15,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.*;
+import javafx.stage.WindowEvent;
+import model.Database;
 
 import java.io.IOException;
 
@@ -38,7 +42,12 @@ public class ForkThisSite extends Application {
 
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Fork This Site !");
-    
+        Database.initialize();
+        this.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                Database.close();
+            }
+        });
         initLayout();
     
         showHome();
@@ -68,12 +77,6 @@ public class ForkThisSite extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        // Button was clicked, do something...
-        
     }
 }
 

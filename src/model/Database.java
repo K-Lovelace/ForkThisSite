@@ -3,6 +3,8 @@ package model;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
 
 public abstract class Database {
@@ -20,5 +22,9 @@ public abstract class Database {
     
     public static void close() {
         db.close();
+    }
+    
+    public static Set<Map.Entry<String, String>> getWebPages() {
+        return map.entrySet();
     }
 }
