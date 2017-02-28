@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.TreeSet;
 
 
@@ -58,24 +59,24 @@ public class Parser {
         }
     
         //Styles
-        document = this.parseStylesheets(document, pretty_url, webPageOutput);
+        document = this.parseStylesheets(document, webPageOutput);
         
         //Images and videos
         if (this.getImages) {
-            document = this.parseImages(document, pretty_url, webPageOutput);
+            document = this.parseImages(document, webPageOutput);
         }
     
         if (this.getVideos) {
-            document = this.parseVideos(document, pretty_url, webPageOutput);
+            document = this.parseVideos(document, webPageOutput);
         }
         
         //Base url
         Element base = document.getElementsByTag("base").first();
-        if(base == null) {
-            base = document.getElementsByTag("head").first().prependElement("base");
+        if(base != null) {
+            base.remove();
         }
-        base.attr("href", this.out);
         
+        //links
         Elements links = document.getElementsByTag("a");
         for (Element link : links) {
             String absHref = link.attr("abs:href");
@@ -88,13 +89,13 @@ public class Parser {
                 link_pretty_url = link_pretty_url.substring(0, 142);
     
             while(this.parsed_urls.contains(link_pretty_url))
-                link_pretty_url = String.format("%s%f", link_pretty_url.substring(0, 141), Math.random());
+                link_pretty_url = String.format("%s%d", link_pretty_url.substring(0, 141), (new Random().nextInt()) % 9);
             
-            link.attr("href", String.format("/%s/index.html", link_pretty_url.replace("?", "%3F").replace(";", "%3B")));
-    
-    
+            link.attr("href", String.format("%s/%s/index.html", this.out, link_pretty_url.replace("?", "%3F").replace(";", "%3B")));
+            
             if (this.parsed_urls.contains(absHref))
-                    continue;
+                continue;
+            
             this.parse(absHref, depth + 1, link_pretty_url);
         }
         
@@ -106,7 +107,7 @@ public class Parser {
         }
     }
     
-    private Document parseStylesheets(Document document, String pretty_url, String webPageOutput) {
+    private Document parseStylesheets(Document document, String webPageOutput) {
         for(Element stylesheet : document.getElementsByAttributeValueContaining("rel", "stylesheet")) {
             String location = stylesheet.attr("abs:href");
             String[] nameSplit = stylesheet.attr("href").split("/");
@@ -138,18 +139,18 @@ public class Parser {
         return document;
     }
     
-    private Document parseVideos(Document document, String pretty_url, String outputDir) {
+    private Document parseVideos(Document document, String outputDir) {
         
         return document;
     }
     
-    private Document parseImages(Document document, String pretty_url, String outputDir) {
+    private Document parseImages(Document document, String outputDir) {
         for (Element img : document.getElementsByTag("img")) {
             String imageLocation = img.attr("abs:src");
             String[] imageNameSplit = img.attr("src").split("/");
             String name = imageNameSplit[imageNameSplit.length - 1];
             
-            img.attr("src", String.format("/%s/%s", outputDir, name));
+            img.attr("src", String.format("%s/%s", outputDir, name));
             //Open a WebPage Stream
             Connection.Response resultImageResponse;
             FileOutputStream out = null;

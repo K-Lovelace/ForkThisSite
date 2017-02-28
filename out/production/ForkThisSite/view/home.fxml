@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerHome">
   <children>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="75.0" layoutX="0.0" layoutY="450.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="300.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
     <Text layoutX="400.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documentation" textAlignment="CENTER" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="150.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
     <Text layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des pages téléchargées" textAlignment="CENTER" AnchorPane.leftAnchor="346.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="150.0" layoutX="0.0" layoutY="0.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
     <Text layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télécharger une page web" textAlignment="CENTER" AnchorPane.leftAnchor="363.0" />
-    <Text layoutX="126.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ForkThisSite, développé par Quentin Castillo et Gael Cuminal, pour l'UCE Prototypage et interfaces." textAlignment="CENTER" />
+    <Text fx:id="infoText" layoutX="20.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ForkThisSite, développé par Quentin Castillo et Gael Cuminal, pour l'UCE Prototypage et interfaces." textAlignment="CENTER" />
+      <Button fx:id="docButton" layoutY="300.0" maxHeight="150.0" maxWidth="900.0" minHeight="150.0" minWidth="900.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="900.0" text="Documentation">
+         <font>
+            <Font name="Verdana" size="34.0" />
+         </font></Button>
+      <Button fx:id="downloadButton" minHeight="150.0" minWidth="900.0" mnemonicParsing="false" text="Télécharger une page Web">
+         <font>
+            <Font name="Verdana" size="34.0" />
+         </font></Button>
+      <Button fx:id="manageButton" layoutY="150.0" maxHeight="150.0" maxWidth="900.0" minHeight="150.0" minWidth="900.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="900.0" text="Gestion des pages téléchargées">
+         <font>
+            <Font name="Verdana" size="34.0" />
+         </font></Button>
+      <ToggleButton fx:id="engLanguage" layoutX="780.0" layoutY="470.0" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="ENG" />
+      <ToggleButton fx:id="rusLanguage" layoutX="845.0" layoutY="470.0" maxHeight="30.0" maxWidth="50.0" minHeight="30.0" minWidth="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="RUS" />
+      <ToggleButton fx:id="frLanguage" layoutX="725.0" layoutY="470.0" maxHeight="30.0" maxWidth="40.0" minHeight="30.0" minWidth="40.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" text="FR" />
   </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
 </AnchorPane>
