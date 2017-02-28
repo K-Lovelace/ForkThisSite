@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.control.*?>
@@ -7,18 +9,65 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="525.0" maxWidth="900.0" minHeight="525.0" minWidth="900.0" prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerHandle">
   <children>
     <SplitPane dividerPositions="0.5" focusTraversable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" stroke="BLACK" strokeType="INSIDE" width="296.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Text layoutX="47.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Architecture des pages" textAlignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TreeView fx:id="treeView" fixedCellSize="0.0" layoutX="16.0" layoutY="62.0" prefHeight="443.0" prefWidth="413.0" />
           </children>
         </AnchorPane>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="49.0" stroke="BLACK" strokeType="INSIDE" width="296.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="deleteButton" layoutY="475.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="450.0" text="Supprimer">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="openButton" layoutY="400.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="450.0" text="Ouvrir l'URL">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="seeButton" layoutY="300.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="450.0" text="Visualiser">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="detailAnchorPane" layoutX="14.0" layoutY="55.0" prefHeight="230.0" prefWidth="423.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <Text disable="true" layoutX="146.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Détails" textAlignment="CENTER" underline="true" wrappingWidth="131.55078125">
+                           <font>
+                              <Font name="Verdana" size="30.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="11.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre: ">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text layoutX="11.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text disable="true" layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Téléchargé le ">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                     </children>
+                  </AnchorPane>
+                  <Text layoutX="76.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de l'URL" textAlignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
           </children>
         </AnchorPane>
       </items>
