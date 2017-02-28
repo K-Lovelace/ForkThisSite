@@ -35,81 +35,149 @@ public class Parser {
     }
     
     public void parse() {
-        this.parse(this.base_url, 0);
+        this.parse(this.base_url, 0, this.base_url.replaceAll("http(s)?://", "").replace('/', '.'));
     }
     
-    private void parse(String url, int depth) {
+    private void parse(String url, int depth, String pretty_url) {
         if (depth > this.max_depth) return;
         this.parsed_urls.add(url);
         Document document;
+        String webPageOutput = String.format("%s/%s", this.out, pretty_url).replace("//", "/");
         try {
             document = Jsoup.connect(url).get();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Parsing WebPage " + url + " failed: " + e.getMessage());
             return;
         }
     
-        String pretty_url = url.replaceAll("http(s*)://", "").replaceAll("/", ".");
-        String webPageOutput = String.format("%s/%s", this.out, pretty_url).replace("//", "/");
+        try {
+            Files.createDirectories(Paths.get(webPageOutput));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+    
+        //Styles
+        document = this.parseStylesheets(document, pretty_url, webPageOutput);
         
+        //Images and videos
         if (this.getImages) {
-            document = this.parseImages(document, webPageOutput);
+            document = this.parseImages(document, pretty_url, webPageOutput);
         }
     
         if (this.getVideos) {
-            document = this.parseVideos(document, webPageOutput);
+            document = this.parseVideos(document, pretty_url, webPageOutput);
         }
-    
         
-        
-        try {
-            Files.createDirectories(Paths.get(webPageOutput));
-            Files.write(Paths.get(webPageOutput + "/index.html"), document.outerHtml().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
+        //Base url
+        Element base = document.getElementsByTag("base").first();
+        if(base == null) {
+            base = document.getElementsByTag("head").first().prependElement("base");
         }
+        base.attr("href", this.out);
         
         Elements links = document.getElementsByTag("a");
         for (Element link : links) {
             String absHref = link.attr("abs:href");
-            if (this.parsed_urls.contains(absHref))
+    
+            if(absHref.isEmpty())
                 continue;
-            this.parse(absHref, depth + 1);
+            
+            String link_pretty_url = absHref.replaceAll("http(s)?://", "").replace('/', '.');
+            if(link_pretty_url.length() > 143)
+                link_pretty_url = link_pretty_url.substring(0, 142);
+    
+            while(this.parsed_urls.contains(link_pretty_url))
+                link_pretty_url = String.format("%s%f", link_pretty_url.substring(0, 141), Math.random());
+            
+            link.attr("href", String.format("/%s/index.html", link_pretty_url.replace("?", "%3F").replace(";", "%3B")));
+    
+    
+            if (this.parsed_urls.contains(absHref))
+                    continue;
+            this.parse(absHref, depth + 1, link_pretty_url);
+        }
+        
+        try {
+            
+            Files.write(Paths.get(webPageOutput + "/index.html"), document.outerHtml().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     
-    private Document parseVideos(Document document, String outputDir) {
+    private Document parseStylesheets(Document document, String pretty_url, String webPageOutput) {
+        for(Element stylesheet : document.getElementsByAttributeValueContaining("rel", "stylesheet")) {
+            String location = stylesheet.attr("abs:href");
+            String[] nameSplit = stylesheet.attr("href").split("/");
+            String name = nameSplit[nameSplit.length - 1];
+            String fileName = String.format("%s/%s", webPageOutput, name);
+            stylesheet.attr("href", String.format("%s/%s", webPageOutput, name));
+            //Open a WebPage Stream
+            Connection.Response resultImageResponse;
+            FileOutputStream out = null;
+            try {
+                resultImageResponse = Jsoup.connect(location).ignoreContentType(true).execute();
+        
+                // output here
+                out = (new FileOutputStream(new java.io.File(fileName)));
+                out.write(resultImageResponse.bodyAsBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if(out != null)
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+            }
+            
+        }
         
         return document;
     }
     
-    private Document parseImages(Document document, String outputDir) {
+    private Document parseVideos(Document document, String pretty_url, String outputDir) {
+        
+        return document;
+    }
+    
+    private Document parseImages(Document document, String pretty_url, String outputDir) {
         for (Element img : document.getElementsByTag("img")) {
             String imageLocation = img.attr("abs:src");
             String[] imageNameSplit = img.attr("src").split("/");
-            String name = imageNameSplit[imageNameSplit.length];
+            String name = imageNameSplit[imageNameSplit.length - 1];
             
+            img.attr("src", String.format("/%s/%s", outputDir, name));
             //Open a WebPage Stream
-            Connection.Response resultImageResponse = null;
+            Connection.Response resultImageResponse;
+            FileOutputStream out = null;
             try {
                 resultImageResponse = Jsoup.connect(imageLocation).ignoreContentType(true).execute();
-                
+    
                 // output here
-                FileOutputStream out = (new FileOutputStream(new java.io.File(String.format("%s/%s", outputDir, name))));
-                out.write(resultImageResponse.bodyAsBytes());  // resultImageResponse.body() is where the image's contents are.
-                out.close();
+                out = (new FileOutputStream(new java.io.File(String.format("%s/%s", outputDir, name))));
+                out.write(resultImageResponse.bodyAsBytes());
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                if(out != null)
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
             }
         }
         return document;
     }
     
     public static void main(String[] args) {
-        Parser parser = new Parser("http://ceri.francoiscapon.com",
-                5,
-                "/home/lovelacez/ForkThisSite.out/test1/",
-                false,
+        Parser parser = new Parser("http://ceri.univ-avignon.fr",
+                2,
+                "/home/lovelacez/ForkThisSite.out/test2/",
+                true,
                 false);
         parser.parse();
     }
