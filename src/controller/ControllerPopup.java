@@ -12,34 +12,33 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ControllerPopup
 	 implements Initializable {
 
-		    @FXML //  fx:id="testButton"
-		    private Button againButton; // Value injected by FXMLLoader
+		    @FXML 
+		    private Button againButton; 
 		    
 		    @FXML
 		    private Button seeButton;
 		    
-		    @Override // This method is called by the FXMLLoader when initialization is complete
+		    @Override 
 		    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-		        assert againButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'simple.fxml'.";
-
-		        // initialize your logic here: all @FXML variables will have been injected
-
 		        againButton.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent event) {
-		            	// METHODE GAEL
+		            	Stage stage = (Stage) againButton.getScene().getWindow();
+		                stage.close();
 		            }
 		        });
 		        
 		        seeButton.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent event) {
-		            	// METHODE GAEL
+		            	Stage stage = (Stage) againButton.getScene().getWindow();
+		                stage.close();
 		            }
 		        });
 		    }
