@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jsoup">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/jsoup-1.10.2.jar!/" />
@@ -20,6 +20,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="org.jsoup:jsoup:1.10.2" level="project" />
+    <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.10.2" level="project" />
+    <orderEntry type="library" exported="" name="org.mapdb:mapdb:3.0.3" level="project" />
   </component>
 </module>

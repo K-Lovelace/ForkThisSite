@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.swing.event.ChangeEvent;
@@ -39,14 +40,18 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import model.Database;
+import model.Parser;
+import model.WebPage;
 
-public class ControllerDownload
-    implements Initializable {
 
-    @FXML 
-    private Button startButton; 
-    @FXML 
-    private TextArea urlText; 
+
+public class ControllerDownload implements Initializable {
+    
+    @FXML
+    private Button startButton;
+    @FXML
+    private TextArea urlText;
     @FXML
     private Text URLText;
     @FXML
@@ -69,15 +74,16 @@ public class ControllerDownload
     private ChoiceBox<String> recChoice;
     @FXML
     private Text recText;
-    
+   
     // Variables de download
     
- // urlText.getText()
+    // urlText.getText()
     private boolean images = true;
     private boolean videos = true;
-    private int recursivity;
+    private int recursivity = 1;
     private File directory;
     
+
 
     
     @Override 
@@ -124,21 +130,18 @@ public class ControllerDownload
 					break;
     	}
     	
-    	
-    	
-    	// On ajoute les choix pour la récursivité
-    	for(int i = 1 ; i <= 10 ; i++){
-    		recChoice.getItems().addAll(String.valueOf(i));
-    	}
-    	// par défaut on met 1
-    	recChoice.getSelectionModel().selectFirst();
-    	
+    
     	// Lancer le téléchargement
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 	// Méthode GAEL avec les variables en parametres
-            		// url : urlText.getText()
+                // Méthode GAEL avec les variables en parametres
+                Parser parser = new Parser(urlText.getText(), recursivity, directory.toString(), images, videos);
+                Database.add(new WebPage(urlText.getText(), directory.toString(), new Date()));
+                (new Thread(parser::parse)).start();
+                
+                // affichage popup
             	final Stage dialog = new Stage();
                 dialog.initModality(Modality.APPLICATION_MODAL);
                 Pane layout = null;
@@ -151,57 +154,67 @@ public class ControllerDownload
                 Scene dialogScene = new Scene(layout);
                 dialog.setScene(dialogScene);
                 dialog.show();
-            }
+           	}
         });
-        
-        folderButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	DirectoryChooser directoryChooser = new DirectoryChooser();
-            	directoryChooser.setTitle("Dossier de sauvegarde");
-            	File selectedDirectory = directoryChooser.showDialog(null);
-            	if (selectedDirectory != null) {
-            	   folderLabel.setText(selectedDirectory.toString());
-            	   directory = selectedDirectory;
-            	}
-            }
-        });
-        
-
-
-        
-        ((ButtonBase) imagesToggle).setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	if(!imagesToggle.isSelected()){
-            		((Labeled) imagesToggle).setText("Non");
-            		images = false;
-            	}
-            	else{
-            		((Labeled) imagesToggle).setText("Oui");
-            		images = true;
-            	}
-            }
-        });
-        
-        
-        ((ButtonBase) videosToggle).setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-            	if(!videosToggle.isSelected()){
-            		((Labeled) videosToggle).setText("Non");
-            		videos = false;
-            	}
-            	else{
-            		((Labeled) videosToggle).setText("Oui");
-            		videos = true;
-            	}
-            }
-        });
-    }
+		        
+		    // On ajoute les choix pour la récursivité
+		    for (int i = 1; i <= 10; i++) {
+		         recChoice.getItems().addAll(String.valueOf(i));
+		    }
+		        // par défaut on met 1
+		        recChoice.getSelectionModel().selectFirst();
+		       
+		        
+		        folderButton.setOnAction(new EventHandler<ActionEvent>() {
+		            @Override
+		            public void handle(ActionEvent event) {
+		                DirectoryChooser directoryChooser = new DirectoryChooser();
+		                directoryChooser.setTitle("Dossier de sauvegarde");
+		                File selectedDirectory = directoryChooser.showDialog(null);
+		                if (selectedDirectory != null) {
+		                    folderLabel.setText(selectedDirectory.toString());
+		                    directory = selectedDirectory;
+		                }
+		            }
+		        });
+		        
+		        
+		        ((ButtonBase) imagesToggle).setOnAction(new EventHandler<ActionEvent>() {
+		            @Override
+		            public void handle(ActionEvent event) {
+		                if (!imagesToggle.isSelected()) {
+		                    ((Labeled) imagesToggle).setText("Non");
+		                    images = false;
+		                } else {
+		                    ((Labeled) imagesToggle).setText("Oui");
+		                    images = true;
+		                }
+		            }
+		        });
+		        
+		        
+		        ((ButtonBase) videosToggle).setOnAction(new EventHandler<ActionEvent>() {
+		            @Override
+		            public void handle(ActionEvent event) {
+		                if (!videosToggle.isSelected()) {
+		                    ((Labeled) videosToggle).setText("Non");
+		                    videos = false;
+		                } else {
+		                    ((Labeled) videosToggle).setText("Oui");
+		                    videos = true;
+		                }
+		            }
+		        });
+		    }
     
-    @FXML // gestion choiceBox
-    private void changeValue(){
-    	recursivity = Integer.parseInt(recChoice.getValue());
+
+		    @FXML // gestion choiceBox
+		    private void changeValue(){
+		    	recursivity = Integer.parseInt(recChoice.getValue());
+		    }
+
     }
-}
+
+    
+
+    
