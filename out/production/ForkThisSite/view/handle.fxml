@@ -16,7 +16,7 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
           <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="450.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Text layoutX="47.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Architecture des pages" textAlignment="CENTER">
+                  <Text fx:id="architecText" layoutX="47.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Architecture des pages" textAlignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -44,26 +44,26 @@
                   </Button>
                   <AnchorPane fx:id="detailAnchorPane" layoutX="14.0" layoutY="55.0" prefHeight="230.0" prefWidth="423.0" style="-fx-background-color: transparent;">
                      <children>
-                        <Text disable="true" layoutX="146.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Détails" textAlignment="CENTER" underline="true" wrappingWidth="131.55078125">
+                        <Text fx:id="detailsText" disable="true" layoutX="94.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Détails" textAlignment="CENTER" underline="true" wrappingWidth="235.55078125">
                            <font>
                               <Font name="Verdana" size="30.0" />
                            </font>
                         </Text>
-                        <Text layoutX="11.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre: ">
+                        <Text fx:id="titleText" layoutX="11.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre: ">
                            <font>
                               <Font size="20.0" />
                            </font></Text>
-                        <Text layoutX="11.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:">
+                        <Text fx:id="urlText" layoutX="11.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL:">
                            <font>
                               <Font size="20.0" />
                            </font></Text>
-                        <Text disable="true" layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Téléchargé le ">
+                        <Text fx:id="downloadText" disable="true" layoutX="14.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Téléchargé le ">
                            <font>
                               <Font size="20.0" />
                            </font></Text>
                      </children>
                   </AnchorPane>
-                  <Text layoutX="76.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de l'URL" textAlignment="CENTER">
+                  <Text fx:id="gestionText" layoutX="76.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de l'URL" textAlignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>

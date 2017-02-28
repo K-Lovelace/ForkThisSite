@@ -46,7 +46,7 @@ public class ControllerHandle implements Initializable {
     @FXML
     private Text gestionText;
     @FXML
-    private TreeView<File> filesTree;
+    private TreeView<File> treeView;
     
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -137,12 +137,13 @@ public class ControllerHandle implements Initializable {
                     printFiles(file,root);
                 } else {
                     System.out.println("    file:" + file.getCanonicalPath());
-                    root.getChildren().add(new TreeItem<>(file));
+                    if(file.getCanonicalPath().endsWith("index.html"))
+                        root.getChildren().add(new TreeItem<>(file));
                 }
                 
             }
             if(parent==null){
-                filesTree.setRoot(root);
+                treeView.setRoot(root);
             } else {
                 parent.getChildren().add(root);
             }
