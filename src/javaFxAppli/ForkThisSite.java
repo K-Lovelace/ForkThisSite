@@ -19,7 +19,15 @@ import java.io.IOException;
 public class ForkThisSite extends Application {
     private Stage primaryStage;
     private BorderPane layout;
+    private static String langue = "fr";
     
+    public static String getMyLanguage() {
+        return langue;
+    }
+
+    public static void setMyLanguage(String choixLangue) {
+        ForkThisSite.langue = choixLangue;
+    }
 
     public static void main(String[] args) {
         launch();
@@ -29,7 +37,7 @@ public class ForkThisSite extends Application {
     public void start(Stage primaryStage) {
 
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Fork This Site !");
     
         initLayout();
     
@@ -53,7 +61,7 @@ public class ForkThisSite extends Application {
     
     private void showHome() {
         try {
-            AnchorPane page = (AnchorPane)FXMLLoader.load(getClass().getClassLoader().getResource("view/download.fxml"));
+            AnchorPane page = (AnchorPane)FXMLLoader.load(getClass().getClassLoader().getResource("view/home.fxml"));
            
             // Set person overview into the center of root layout.
             layout.setCenter(page);
