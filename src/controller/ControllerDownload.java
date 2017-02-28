@@ -4,15 +4,22 @@ package controller;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import javaFxAppli.ForkThisSite;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ChoiceBox;
@@ -21,8 +28,16 @@ import javafx.scene.control.Labeled;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Toggle;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 
 public class ControllerDownload
@@ -33,7 +48,11 @@ public class ControllerDownload
     @FXML 
     private TextArea urlText; 
     @FXML
+    private Text URLText;
+    @FXML
     private Label folderLabel;
+    @FXML
+    private Text folderText;
     @FXML
     private ProgressBar progress = new ProgressBar(0.0);
     @FXML
@@ -41,10 +60,15 @@ public class ControllerDownload
     @FXML
     private Toggle imagesToggle;
     @FXML
+    private Text imagesText;
+    @FXML
     private Toggle videosToggle;
     @FXML
+    private Text videosText;
+    @FXML
     private ChoiceBox<String> recChoice;
-
+    @FXML
+    private Text recText;
     
     // Variables de download
     
@@ -53,6 +77,8 @@ public class ControllerDownload
     private boolean videos = true;
     private int recursivity;
     private File directory;
+    
+
     
     @Override 
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -64,8 +90,11 @@ public class ControllerDownload
     				else ((Labeled) imagesToggle).setText("Non");
     				if(videosToggle.isSelected())((Labeled) videosToggle).setText("Oui");
     				else ((Labeled) videosToggle).setText("Non");
-    				
-   	
+    				videosText.setText("Télecharger les vidéos ?");
+    				imagesText.setText("Télecharger les images ?");
+    				folderText.setText("Répertoir de sauvegarde :");
+    				URLText.setText("URL de la page Web :");
+    				recText.setText("Niveau de récursivité : ");
         			break;
         			
     	case "eng": startButton.setText("Launch");
@@ -74,6 +103,11 @@ public class ControllerDownload
 					else ((Labeled) imagesToggle).setText("No");
 					if(videosToggle.isSelected())((Labeled) videosToggle).setText("Yes");
 					else ((Labeled) videosToggle).setText("No");
+    				videosText.setText("Download videos?");
+    				imagesText.setText("Download images?");
+    				folderText.setText("Backup directory:");
+    				URLText.setText("Web page URL:");
+    				recText.setText("Level of recursion:");
 					break;
 					
     	case "rus": startButton.setText("старт");
@@ -82,6 +116,11 @@ public class ControllerDownload
 					else ((Labeled) imagesToggle).setText("не");
 					if(videosToggle.isSelected())((Labeled) videosToggle).setText("да");
 					else ((Labeled) videosToggle).setText("не");
+    				videosText.setText("Загрузить видео?");
+    				imagesText.setText("Загрузка изображений?");
+    				folderText.setText("Резервное копирование каталога:");
+    				URLText.setText("URL веб-страницы:");
+    				recText.setText("Уровень рекурсии:");
 					break;
     	}
     	
@@ -98,10 +137,20 @@ public class ControllerDownload
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	if(directory != null){
                 	// Méthode GAEL avec les variables en parametres
             		// url : urlText.getText()
-            	}
+            	final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                Pane layout = null;
+                try {
+					layout = (Pane)FXMLLoader.load(getClass().getClassLoader().getResource("view/popupSuccess.fxml"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                Scene dialogScene = new Scene(layout);
+                dialog.setScene(dialogScene);
+                dialog.show();
             }
         });
         
@@ -118,6 +167,7 @@ public class ControllerDownload
             }
         });
         
+
 
         
         ((ButtonBase) imagesToggle).setOnAction(new EventHandler<ActionEvent>() {
@@ -149,5 +199,9 @@ public class ControllerDownload
             }
         });
     }
-
+    
+    @FXML // gestion choiceBox
+    private void changeValue(){
+    	recursivity = Integer.parseInt(recChoice.getValue());
+    }
 }

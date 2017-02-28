@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ControllerHandle
@@ -21,19 +23,61 @@ public class ControllerHandle
 
 		    @FXML 
 		    private Button deleteButton;
-		    
 		    @FXML
 		    private Button seeButton;
-		    
 		    @FXML
-		    private Button openButton; 
-		    
+		    private Button openButton;
 		    @FXML
-		    private AnchorPane detailAnchorPane;
+		    private Text detailsText;
+		    @FXML
+		    private Text titleText;
+		    @FXML
+		    private Text urlText;
+		    @FXML
+		    private Text downloadText;
+		    @FXML
+		    private Text architecText;
+		    @FXML
+		    private Text gestionText;
 		    
 		    @Override
 		    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-
+		    	switch(ForkThisSite.getMyLanguage()){
+		    	case "fr":  deleteButton.setText("Supprimer");
+		    				seeButton.setText("Visualiser");
+		    				openButton.setText("Ouvrir l'URL");
+		    				detailsText.setText("Détails");
+		    				titleText.setText("Titre :");
+		    				urlText.setText("URL :");
+		    				downloadText.setText("Téléchargé le : ");
+		    				architecText.setText("Architecture des pages");
+		    				gestionText.setText("Gestion de l'URL");
+		        			break;
+		        			
+		    	case "eng": deleteButton.setText("Delete");
+							seeButton.setText("Show");
+							openButton.setText("Open the URL");
+							detailsText.setText("Details");
+							titleText.setText("Headline :");
+							urlText.setText("URL :");
+							downloadText.setText("Uploaded on : ");
+							architecText.setText("Architecture of pages");
+		    				gestionText.setText("URL management");
+							break;
+							
+		    	case "rus": deleteButton.setText("удалять");
+							seeButton.setText("дисплей");
+							openButton.setText("Открыть URL");
+							detailsText.setText("подробности");
+							titleText.setText("Название :");
+							urlText.setText("URL :");
+							downloadText.setText("скачал : ");
+							architecText.setText("архитектура страницы");
+		    				gestionText.setText("Управление URL");
+							break;
+		    	}
+		    	
+		    	
 		        deleteButton.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent event) {
@@ -52,7 +96,13 @@ public class ControllerHandle
 		        openButton.setOnAction(new EventHandler<ActionEvent>() {
 		            @Override
 		            public void handle(ActionEvent event) {
-		            	// METHODE GAEL
+		            	String url_open ="www.google.fr";
+		            	try {
+							java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 		            }
 		        });
 		        
