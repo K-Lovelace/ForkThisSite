@@ -36,7 +36,9 @@ public class Parser {
     }
     
     public void parse() {
+        System.out.println("Parsing starting");
         this.parse(this.base_url, 0, this.base_url.replaceAll("http(s)?://", "").replace('/', '.'));
+        System.out.println("Parsing over!");
     }
     
     private void parse(String url, int depth, String pretty_url) {

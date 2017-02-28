@@ -1,13 +1,24 @@
 package model;
 
+import org.mapdb.DB;
+import org.mapdb.DBMaker;
+
+import java.util.concurrent.ConcurrentMap;
+
 public abstract class Database {
+    private static DB db;
+    private static ConcurrentMap map;
     
-    
-    public static void getAllParsedUrls() {
-        System.out.println("Returns a WebPage object");
+    public static void initialize() {
+        db = DBMaker.fileDB("webpages.db").make();
+        map = db.hashMap("map").createOrOpen();
     }
     
-    public static void getUrl(String name) {
-        System.out.println("Returns the requested url");
+    public static void add(WebPage webPage) {
+        map.put(webPage.getUrl(), webPage.toString());
+    }
+    
+    public static void close() {
+        db.close();
     }
 }
