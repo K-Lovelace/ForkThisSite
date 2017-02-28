@@ -21,28 +21,28 @@
       <ToggleButton fx:id="imagesToggle" layoutX="192.0" layoutY="224.0" mnemonicParsing="false" text="Oui" />
       <ToggleButton fx:id="videosToggle" layoutX="601.0" layoutY="224.0" mnemonicParsing="false" text="Oui" />
       <Button fx:id="folderButton" layoutX="582.0" layoutY="83.0" mnemonicParsing="false" text="Parcourir" />
-      <Text fx:id="folderText" layoutX="165.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Répertoir de sauvegarde :" wrappingWidth="284.22900390625">
+      <Text fx:id="folderText" layoutX="132.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Répertoir de sauvegarde :" wrappingWidth="498.22900390625">
          <font>
             <Font name="Verdana" size="19.0" />
          </font>
       </Text>
-      <Text fx:id="imageText" layoutX="97.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télecharger les images ?" wrappingWidth="284.22900390625">
+      <Text fx:id="imagesText" layoutX="97.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télecharger les images ?" wrappingWidth="284.22900390625">
          <font>
             <Font name="Verdana" size="19.0" />
          </font>
       </Text>
-      <Text layoutX="512.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télecharger les vidéos ?" wrappingWidth="284.22900390625">
+      <Text fx:id="videosText" layoutX="512.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Télecharger les vidéos ?" wrappingWidth="284.22900390625">
          <font>
             <Font name="Verdana" size="19.0" />
          </font>
       </Text>
-      <Text layoutX="50.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL de la page Web :" wrappingWidth="284.22900390625">
+      <Text fx:id="URLText" layoutX="50.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="URL de la page Web :" wrappingWidth="284.22900390625">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="recChoice" layoutX="281.0" layoutY="436.0" prefHeight="25.0" prefWidth="55.0" />
-      <Text layoutX="54.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau de récursivité : " wrappingWidth="237.22900390625">
+      <ChoiceBox fx:id="recChoice" layoutX="281.0" layoutY="436.0" onMouseClicked="#changeValue" prefHeight="25.0" prefWidth="55.0" />
+      <Text fx:id="recText" layoutX="54.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau de récursivité : " wrappingWidth="237.22900390625">
          <font>
             <Font size="19.0" />
          </font>
@@ -51,7 +51,7 @@
          <font>
             <Font name="Verdana" size="20.0" />
          </font></Label>
-      <TextArea fx:id="urlText" layoutX="54.0" layoutY="352.0" maxHeight="40.0" maxWidth="370.0" minHeight="40.0" minWidth="370.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="370.0" text="...">
+      <TextArea fx:id="urlText" layoutX="54.0" layoutY="352.0" maxHeight="40.0" maxWidth="370.0" minHeight="40.0" minWidth="370.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="370.0" text="http://">
          <font>
             <Font size="20.0" />
          </font>

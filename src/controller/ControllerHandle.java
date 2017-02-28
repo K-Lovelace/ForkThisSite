@@ -18,55 +18,105 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.control.Labeled;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Database;
 import model.WebPage;
 
-public class ControllerHandle
-        implements Initializable {
+public class ControllerHandle implements Initializable {
     
     @FXML
     private Button deleteButton;
-    
     @FXML
     private Button seeButton;
-    
     @FXML
     private Button openButton;
-    
     @FXML
-    private AnchorPane detailAnchorPane;
-    
+    private Text detailsText;
+    @FXML
+    private Text titleText;
+    @FXML
+    private Text urlText;
+    @FXML
+    private Text downloadText;
+    @FXML
+    private Text architecText;
+    @FXML
+    private Text gestionText;
     @FXML
     private TreeView<File> filesTree;
     
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
-    
         printFiles();
+        switch (ForkThisSite.getMyLanguage()) {
+            case "fr":
+                deleteButton.setText("Supprimer");
+                seeButton.setText("Visualiser");
+                openButton.setText("Ouvrir l'URL");
+                detailsText.setText("Détails");
+                titleText.setText("Titre :");
+                urlText.setText("URL :");
+                downloadText.setText("Téléchargé le : ");
+                architecText.setText("Architecture des pages");
+                gestionText.setText("Gestion de l'URL");
+                break;
+            
+            case "eng":
+                deleteButton.setText("Delete");
+                seeButton.setText("Show");
+                openButton.setText("Open the URL");
+                detailsText.setText("Details");
+                titleText.setText("Headline :");
+                urlText.setText("URL :");
+                downloadText.setText("Uploaded on : ");
+                architecText.setText("Architecture of pages");
+                gestionText.setText("URL management");
+                break;
+            
+            case "rus":
+                deleteButton.setText("удалять");
+                seeButton.setText("дисплей");
+                openButton.setText("Открыть URL");
+                detailsText.setText("подробности");
+                titleText.setText("Название :");
+                urlText.setText("URL :");
+                downloadText.setText("скачал : ");
+                architecText.setText("архитектура страницы");
+                gestionText.setText("Управление URL");
+                break;
+        }
+        
         
         deleteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //Delete page
+                // delete page
             }
         });
         
         seeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //View page
+                // see page
+                System.out.println(ForkThisSite.getMyLanguage());
             }
         });
         
         openButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //Open page in browser
+                String url_open = "www.google.fr";
+                try {
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
-        
     }
     
     private void printFiles() {
@@ -100,5 +150,4 @@ public class ControllerHandle
             e.printStackTrace();
         }
     }
-    
 }

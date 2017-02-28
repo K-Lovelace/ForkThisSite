@@ -5,11 +5,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerDoc">
    <children>
       <ScrollPane hbarPolicy="NEVER" layoutX="35.0" layoutY="24.0" prefHeight="450.0" prefWidth="800.0" vbarPolicy="ALWAYS">
          <content>
-            <Text lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIRE README.TXT" wrappingWidth="725.0" />
+            <Text fx:id="text" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIRE README.TXT" wrappingWidth="725.0">
+               <font>
+                  <Font size="24.0" />
+               </font></Text>
          </content>
       </ScrollPane>
    </children>
